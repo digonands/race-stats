@@ -69,3 +69,17 @@ def CalculatePilotoTotalTime(race_data, cod_piloto):
 
     return str(total_time)[:-3]
 
+
+def ShowRaceResults(race_data, last_lap_data):
+
+    header = "Posição\t\tCódigo Piloto\tNome Piloto\tVoltas Completadas\tTempo Total"
+    print(header)
+    posicao = 1
+    results = last_lap_data
+
+    for r in results:
+        total_time = CalculatePilotoTotalTime(race_data, r[1])
+        print("{0}°\t\t{1:15} {2:15} {3:23} {4}".format(
+            posicao, r[1], r[2], r[3], total_time))
+        posicao += 1
+
