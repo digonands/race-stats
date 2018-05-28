@@ -34,6 +34,8 @@ def ParseCodPilotos(log):
 
     # Use set to get unique values then convert to a list again
     cod_pilotos = list(set(cod_pilotos))
+    # Sort values from the list
+    cod_pilotos.sort()
 
     return cod_pilotos
 
@@ -92,8 +94,10 @@ def CalculatePilotoTotalTime(race_data, cod_piloto):
         microseconds=microseconds_sum
     )
 
-    # Convert to string and remove the unwanted '000'
-    return str(total_time)[:-3]
+    # Format the total time delta
+    total_time_format = dt.datetime.strptime(str(total_time), '%H:%M:%S.%f')
+    total_time_format = total_time_format.strftime('%-M:%S.%f')[:-3]
+    return total_time_format
 
 
 def ShowRaceResults(race_data, last_lap_data):
